@@ -70,7 +70,8 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
       return state;
   }
 };
-/* FILTERS REDUCER: */
+
+/*** FILTERS REDUCER: ***/
 const filtersReducerDefaultState = {
   text: '',
   sortBy: 'date',
@@ -128,6 +129,7 @@ store.subscribe(() => {
   const visibleExpenses = getVisibleExpenses(st.expenses, st.filters);
   console.log(visibleExpenses);
 });
+
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 /** EXAMPLES OF DISPATCHING  **/
 const expenseTwo = store.dispatch(
