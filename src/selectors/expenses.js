@@ -1,3 +1,4 @@
+// Get the VISIBLE expenses:
 
 export default (expenses, filters) => {
   const { text, sortBy, startDate, endDate } = filters;
