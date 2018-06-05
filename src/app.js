@@ -13,12 +13,11 @@ import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+// DUMMY DATA TO FUTZ WITH
 store.dispatch( addExpense({description:'Water Bill created1st', amount:9999 } ) );
 store.dispatch( addExpense({description:'Gas Bill lastDate ZeroAmt', createdAt:1000 } ) );
 store.dispatch( addExpense({description:'Rent highestAmt', amount:105000 } ) );
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-console.log( 'State ==>', store.getState() );
 
 const jsx = (   // For whatever reason, this must be spread over multiple lines !!WARN!!
   <Provider store={store}>
