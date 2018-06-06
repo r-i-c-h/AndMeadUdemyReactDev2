@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
+import moment from 'moment';
+
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+
+// const now = moment();
+// console.log(now.format('MMM Do, YYYY h:mA'));
 
 export default class ExpenseForm extends Component {
   state = {
     description: '',
     note: '',
-    amount: ''
-  }
+    amount: '',
+    createdAt: moment(),
+    datePickerFocused: false
+  };
 
   handleDescriptionChange = (e) => {
     const description = e.target.value;
@@ -24,6 +33,14 @@ export default class ExpenseForm extends Component {
       this.setState( ()=> ({amount}) );
     }
   };
+  handleDateChange = (createdAt) => {
+    // per docs, this gets called with a new moment time obj as the arg...
+    this.setState( ()=> ({createdAt}) );
+  };
+  onFocusChange = ({ focused }) => {
+    this.setState( ()=> ({ datePickerFocused: focused }) );
+  };
+
   render() {
     return (
       <div>
@@ -40,6 +57,14 @@ export default class ExpenseForm extends Component {
             placeholder="Amount"
             value={this.state.amount}
             onChange={this.handleAmountChange}
+          />
+          <SingleDatePicker 
+            date={this.state.createdAt}
+            onDateChange={this.handleDateChange}
+            focused={this.state.datePickerFocused}
+            onFocusChange={this.onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={ () => { false } }
           />
           <textarea
             placeholder="Note to add..."
