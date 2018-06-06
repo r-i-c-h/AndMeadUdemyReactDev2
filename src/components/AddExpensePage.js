@@ -10,9 +10,8 @@ const AddExpensePage = (props) => (
     <ExpenseForm 
       onSubmit={ (expense) => {
         props.dispatch(addExpense(expense));
-        props.history.push('/'); // history is from from react-router
+        props.history.push('/'); // history from `react-router` - effectively clears form by changing page
       }}
-    
     />
   </div>
 ); 

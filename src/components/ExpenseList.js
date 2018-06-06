@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// connect is effective a higher-order-component that creates a version of ExpenseList with access to the store
+// connect is effectively a higher-order-component that creates a version of ExpenseList with access to the store
 // connectAPI: connect( state => {Info:to access})( Component to access it with )
 import selectExpenses from '../selectors/expenses';
 import ExpenseListItem from './ExpenseListItem';

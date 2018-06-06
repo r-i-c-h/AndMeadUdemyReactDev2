@@ -6,14 +6,17 @@ import 'react-dates/lib/css/_datepicker.css';
 // Doesn't actually hit a reducer because the same component works for both ADD and EDIT 
 // - instead /those/ pass down their own versions of props.onSubmit() 
 export default class ExpenseForm extends Component {
-  state = {
-    amount: '',
-    createdAt: moment(),
-    description: '',
-    note: '',
+constructor(props) {
+  super(props);
+  this.state = {
+    description: props.expense ? props.expense.description : '',
+    note: props.expense ? props.expense.note : '',
+    amount: props.expense ? (props.expense.amount / 100).toString() : '',
+    createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
     datePickerFocused: false,
     error: ''
   };
+}
   /** Alternate Style of onChange Handling: Instead of starting with a var defined as e.target.value **/
   /** You CAN access the e.target.value directly, BUT you MUST call e.persist() first! **/
   /* handleFooChange = (e) => { e.persist(); this.setState(()=>{ foo: e.target.value}); } */
@@ -83,7 +86,7 @@ export default class ExpenseForm extends Component {
             placeholder="Note to add..."
             onChange={this.handleNoteTextChange}
           ></textarea>
-          <button>Add Expense</button>
+          <button>Save</button>
         </form>
       </div>
     );
