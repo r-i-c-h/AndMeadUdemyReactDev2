@@ -41,7 +41,9 @@ class ExpenseListFilters extends Component {
         </select>
         <DateRangePicker
           startDate={this.props.filters.startDate}
+          startDateId={'foo'}
           endDate={this.props.filters.endDate}
+          endDateId={'bar'}
           onDatesChange={this.handleDatesChange}
           numberOfMonths={1}
           isOutsideRange={() => { false; }}
