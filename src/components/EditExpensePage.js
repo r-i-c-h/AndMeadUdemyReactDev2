@@ -1,39 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from './ExpenseForm';
 import { editExpense, removeExpense } from '../actions/expenses'; //
 
-const EditExpensePage = props => {
-  console.log(props);
+export class EditExpensePage extends Component {
+  onSubmit = (expense) => {
+    this.props.editExpense(this.props.expense.id, expense);
+    this.props.history.push('/');
+  }
+  onRemove = () => {
+    this.props.removeExpense({ id: this.props.expense.id });
+    this.props.history.push('/');
+  }
+
+  render(){
   return (
     <div>
       <h3>EDIT PAYMENT INFO:</h3>
-      <p>Payment#: {props.match.params.id}</p>
+      <p>Transaction Id#: {this.props.expense.id}</p>
       <ExpenseForm
-        expense={props.expense}
-        onSubmit={expense => {
-          props.dispatch(editExpense(props.match.params.id, expense));
-          props.history.push('/');
-        }}
+        expense={this.props.expense}
+        onSubmit={this.onSubmit}
       />
-      <button
-        onClick={() => {
-          props.dispatch(removeExpense({ id: props.match.params.id }));
-          props.history.push('/');
-        }}
-      >Remove
-      </button>
+      <button onClick={this.onRemove}>Remove</button>
     </div>
   );
+  }
 };
 
-const giveComponentCurrentExpenseObj = (state, props) => {
-  //   ^^^ mapStateToProps() ^^^
-  return {
-    expense: state.expenses.find(expense => {
-      return expense.id === props.match.params.id;
-    })
-  };
-};
+  const mapStateToProps = (state, props) => ({
+    expense: state.expenses.find((expense) => expense.id === props.match.params.id)
+  });
 
-export default connect(giveComponentCurrentExpenseObj)(EditExpensePage);
+  const mapDispatchToProps = (dispatch, props) => ({
+     editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+     removeExpense: (data) => dispatch(removeExpense(data))
+  });
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage); 
