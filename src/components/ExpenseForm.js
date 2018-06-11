@@ -51,7 +51,7 @@ export default class ExpenseForm extends Component {
       this.setState(() => ({ error: '' }));
       this.props.onSubmit({ // Call the onSubmit() from props so we can use <ExpenseForm> with either ADD or EDIT
         description: this.state.description,
-        amount: parseFloat(this.state.amount, 10) * 100,
+        amount: Math.floor( parseFloat(this.state.amount, 10) * 100 ),
         createdAt: this.state.createdAt.valueOf(),
         note: this.state.note
       });
