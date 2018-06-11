@@ -6,8 +6,8 @@ import { addExpense } from '../actions/expenses'; // wants Description, Note, Am
 
 export class AddExpensePage extends Component {
   onSubmit = (expense) => {
-    // /* props.dispatch(addExpense(expense)); <<< Taken care of by mapDispatchToProps */
-    this.props.onSubmit(expense);
+  // /* props.dispatch(addExpense(expense)); <<< Taken care of by mapDispatchToProps */
+    this.props.addExpense(expense);
     this.props.history.push('/'); // history from `react-router` - effectively clears form by changing page
   }
 
@@ -24,7 +24,7 @@ export class AddExpensePage extends Component {
 } 
 
 const mapDispatchToProps = (dispatch) => {
-  return { onSubmit: (expense) => dispatch(addExpense(expense)) };
+  return { addExpense: (expense) => dispatch(addExpense(expense)) };
 };
 
 export default connect(undefined, mapDispatchToProps)(AddExpensePage);

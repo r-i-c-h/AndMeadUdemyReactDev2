@@ -4,12 +4,12 @@ import { shallow } from 'enzyme';
 import { AddExpensePage } from '../../components/AddExpensePage';
 import FAKE from '../FIXTURES/dummyExpensesDataArray';
 
-let onSubmit, history, wrapper;
+let addExpense, history, wrapper;  
 
 beforeEach(() => {
-  onSubmit = jest.fn();
+  addExpense = jest.fn();
   history = { push: jest.fn() };
-  wrapper = shallow(<AddExpensePage onSubmit={onSubmit} history={history} />);
+  wrapper = shallow(<AddExpensePage addExpense={addExpense} history={history} />);
 });
 
 test('should render AddExpensePage korektly', () => {
@@ -19,5 +19,5 @@ test('should render AddExpensePage korektly', () => {
 test('should handle onSubmit action', () => {
   wrapper.find('ExpenseForm').prop('onSubmit')(FAKE[1]);
   expect(history.push).toHaveBeenLastCalledWith('/');
-  expect(onSubmit).toHaveBeenLastCalledWith(FAKE[1]);
+  expect(addExpense).toHaveBeenLastCalledWith(FAKE[1]);
 });
