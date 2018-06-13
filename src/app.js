@@ -15,10 +15,10 @@ import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-// DUMMY DATA TO FUTZ WITH
-store.dispatch( addExpense({description:'Water Bill', amount:9999 } ) );
-store.dispatch( addExpense({description:'Gas Bill', amount:30000, createdAt:1528361063331 } ) );
-store.dispatch( addExpense({description:'Rent', amount:105000 } ) );
+// DUMMY DATA For Development
+// store.dispatch( addExpense({description:'Water Bill', amount:9999 } ) );
+// store.dispatch( addExpense({description:'Gas Bill', amount:30000, createdAt:1528361063331 } ) );
+// store.dispatch( addExpense({description:'Rent', amount:105000 } ) );
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
 const jsx = (   // For whatever reason, this must be spread over multiple lines !!WARN!!
