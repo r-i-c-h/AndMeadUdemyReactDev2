@@ -20,15 +20,6 @@ module.exports = (env) => {
           loader: 'babel-loader'
         }
       },
-      // {
-      //   test: /\.html?$/,
-      //   use: [
-      //     {
-      //       loader: "html-loader",
-      //       options: { minimize: true }
-      //     }
-      //   ]
-      // }
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
