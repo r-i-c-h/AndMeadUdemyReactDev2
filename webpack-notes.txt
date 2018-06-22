@@ -1,0 +1,36 @@
+Things that /could/ be changed in Webpack setup...
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+yarn add --dev extract-css-chunks-webpack-plugin
+https://github.com/faceyspacey/extract-css-chunks-webpack-plugin < mini-css-extract-plugin w/HotModuleReloads
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+* Add/use 'postcss-loader' in the CSS loaders. <~~ Does vendor prefixing...
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+* Change the html file to be inside /src and use html-webpack-plugin and html-loader?
+>  const HtmlWebPackPlugin = require("html-webpack-plugin"); Topline
+>  plugins: [                                                after module:{} obj before end
+    new HtmlWebPackPlugin({
+      template: "./src/index.html",
+      filename: "./index.html"
+    })
+  ]
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+* Explicitly add/use uglifyjs-webpack-plugin
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+* Change config `entry: './src/app.js',` to `entry: ['./src/app.js','./src/styles/styles.scss']`
+
+
+Useful URLs:
+https://github.com/webpack-contrib/mini-css-extract-plugin 
+https://webpack.js.org/plugins/mini-css-extract-plugin/
+https://www.valentinog.com/blog/webpack-tutorial/ and https://www.valentinog.com/blog/from-gulp-to-webpack-4-tutorial/#Switching_from_Gulp_to_webpack_compiling_SASS_to_CSS_adding_vendor_prefixes_to_CSS
+
+https://survivejs.com/webpack/optimizing/minifying/
+
+SO:
+https://stackoverflow.com/questions/50020300/cannot-minify-css-file
+https://stackoverflow.com/questions/49410921/webpack-4-mini-css-extract-plugin-sass-loader-splitchunks
+
+Theoretical example - https://github.com/carloluis/webpack-demo/blob/master/config/webpack.config.prod.js

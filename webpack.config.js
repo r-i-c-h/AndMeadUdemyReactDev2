@@ -1,8 +1,9 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
   const isProductionBuild = env === 'production' ? 'production' : false;
-// using `webpack --env.development` will make  env = {development:true}
+// using `webpack --env.development` will make `env` equal an object {development:true}
 // just testing for production here...
   return {
     mode:  isProductionBuild ? 'production': 'development',
@@ -13,20 +14,47 @@ module.exports = (env) => {
     },
     module: {
       rules: [{
-        loader: 'babel-loader',
         test: /\.jsx?$/,
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
       },
+      // {
+      //   test: /\.html?$/,
+      //   use: [
+      //     {
+      //       loader: "html-loader",
+      //       options: { minimize: true }
+      //     }
+      //   ]
+      // }
       {
-        test: /\.s?css$/,
-        use:[
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          isProductionBuild ? MiniCssExtractPlugin.loader : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
+        ],
       }]
-    },
-    devtool: isProductionBuild ? 'source-map' : 'cheap-module-eval-source-map',
+    },  
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: "[name].css",
+        chunkFilename: "[id].css"
+      })
+    ],
+    devtool: isProductionBuild ? 'source-map' : 'inline-source-map', 
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true
